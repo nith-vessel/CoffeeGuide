@@ -1,0 +1,38 @@
+syntax = "proto3";
+package coffeeguide;
+
+// option java_multiple_files = true;
+// option java_package = "io.grpc.examples.helloworld";
+// option java_outer_classname = "HelloWorldProto";
+// option objc_class_prefix = "HLW";
+
+
+
+service CoffeeGuide {
+    // Get the list of available coffee's
+    rpc GetCoffeeList(Empty) returns (CoffeeListReply) {}
+    // Get info about a specific coffee
+    rpc GetCoffee(CoffeeRequest) returns (CoffeeReply) {}
+  }
+  
+  // Reply containing a list of the available coffees
+  message CoffeeListReply {
+    repeated Coffee list = 1;
+  }
+  // Message containing the name and information about a coffee
+  message Coffee {
+    string name = 1;
+    string preview = 2;
+  }
+  message CoffeeReply { 
+    string name = 1;
+    string description = 2;
+  }
+  // Request containing the name of the requested coffee
+  message CoffeeRequest {
+    string name = 1;
+  }
+  // empty message for one way requests.
+  message Empty {
+  
+  }
